@@ -21,10 +21,10 @@ Make sure your python module works in dual-mode: by itself or import to other mo
 # NOTE: You may need to run: $ pip install matplotlib
 
 x0 = 1.0
-vx0 = 70.0         # TODO: capture input
+#vx0 = 70.0         # TODO: capture input
 
 y0 = 0.0
-vy0 = 80.0          # TODO: capture input
+#vy0 = 80.0          # TODO: capture input
 
 ax = 0.0
 ay = -9.8           # define a constant
@@ -53,42 +53,31 @@ def plot_data():
 
 def main():
        """
-       Main" Function
+       Main" Function. 
        """
-       capture_input()
-       set_data()
+
+       # Loop until correct input. Cast to int
+       while 1:
+              try:
+                     vx0 = int(input('Enter x Velocity:'))
+                     break
+              except:
+                     pass    
+              print("That's not a digit. Please try again.")
+
+       # Loop until correct input. Cast to int
+       while 1:
+              try:
+                     vy0 = int(input('Enter y Velocity:'))
+                     break
+              except:
+                     pass    
+              print("That's not a digit. Please try again.")
+       
+       set_data(vx0, vy0)
        plot_data()
 
-
-def capture_input():
-       """
-       Function to get user input
-       """
-       # define local variables
-       global vx0
-       global vy0 
-       vx = ''
-       vy = ''
-       
-       #get input and validate that it is a digit
-       while vx.isdigit() == False:
-              vx = input('Enter x Velocity:')
-              if vx.isdigit():
-                     #set the velocity to the user's input
-                     vx0 = int(vx)
-              else:
-                     print(vx, ' is not a digit')
-       
-       #get input and validate that it is a digit
-       while vy.isdigit() == False:              
-              vy = input('Enter y Velocity:')
-              if vy.isdigit():
-                     #set the velocity to the user's input
-                     vy0 = int(vy)
-              else:
-                     print(vy, ' is not a digit')
-
-def set_data():
+def set_data(vx0 = 70, vy0 = 80):
        """
        Function to set data
        """
