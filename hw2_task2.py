@@ -20,10 +20,10 @@ Make sure your python module works in dual-mode: by itself or import to other mo
 """
 # NOTE: You may need to run: $ pip install matplotlib
 
-x0 = 1.0
+#x0 = 1.0
 #vx0 = 70.0         # TODO: capture input
 
-y0 = 0.0
+#y0 = 0.0
 #vy0 = 80.0          # TODO: capture input
 
 ax = 0.0
@@ -55,31 +55,45 @@ def main():
        """
        Main" Function. 
        """
-
        # Loop until correct input. Cast to int
        while 1:
               try:
-                     vx0 = int(input('Enter x Velocity:'))
+                     x0 = float(input('Enter x Position:'))
                      break
               except:
                      pass    
-              print("That's not a digit. Please try again.")
-
+              print("That's not a digit for x Position. Please try again.")   
+       # Loop until correct input. Cast to int          
+       while 1:
+              try:
+                     y0 = float(input('Enter y Position:'))
+                     break
+              except:
+                     pass    
+              print("That's not a digit for y Position. Please try again.")             
        # Loop until correct input. Cast to int
        while 1:
               try:
-                     vy0 = int(input('Enter y Velocity:'))
+                     vx0 = float(input('Enter x Velocity:'))
                      break
               except:
                      pass    
-              print("That's not a digit. Please try again.")
+              print("That's not a digit for x Volocity. Please try again.")
+       # Loop until correct input. Cast to int
+       while 1:
+              try:
+                     vy0 = float(input('Enter y Velocity:'))
+                     break
+              except:
+                     pass    
+              print("That's not a digit for y Volocity. Please try again.")
        
-       set_data(vx0, vy0)
+       set_data(x0, y0, vx0, vy0)
        plot_data()
 
-def set_data(vx0 = 70, vy0 = 80):
+def set_data(x0 = 1.0, y0 = 0.0, vx0 = 70.0, vy0 = 80.0):
        """
-       Function to set data
+       Function to set data. Set initial variables
        """
 
        # loop through array of points
