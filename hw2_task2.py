@@ -1,3 +1,7 @@
+#Skylar Olsen
+#02/02/2019
+#Homework 2 Task 2
+
 import numpy as np
 import math as m
 import matplotlib.pyplot as plt
@@ -16,21 +20,8 @@ Make sure your python module works in dual-mode: by itself or import to other mo
 """
 # NOTE: You may need to run: $ pip install matplotlib
 
-# Function to calculate projectile motion
-def px(x,v,t,a):
-    return x + v*t + 0.5*a*t**2
-
-# Function to plot data
-def plot_data():
-    pass
-
-# "Main" Function
-def main():
-    pass
-
-
 x0 = 1.0
-vx_0 = 70.0         # TODO: capture input
+vx0 = 70.0         # TODO: capture input
 
 y0 = 0.0
 vy0 = 80.0          # TODO: capture input
@@ -46,14 +37,73 @@ y = []
 
 intervals = 170
 
-for i in range(interval):
-    x.append(px(x0,vx0,t,ax))
-    y.append(px(y0,vy0,t,ay))
-    t = t + delt
 
-    if y[i + 1] > 0.0:
-       break
+def px(x,v,t,a):
+       """
+       Function to calculate projectile motion
+       """
+       return x + (v*t) + (0.5*a*t**2)
+
+def plot_data():
+       """
+       Function to plot data
+       """
+       plt.plot(x, y)
+       plt.show()
+
+def main():
+       """
+       Main" Function
+       """
+       capture_input()
+       set_data()
+       plot_data()
 
 
-plt.plot(x, y)
-plt.show()
+def capture_input():
+       """
+       Function to get user input
+       """
+       # define local variables
+       global vx0
+       global vy0 
+       vx = ''
+       vy = ''
+       
+       #get input and validate that it is a digit
+       while vx.isdigit() == False:
+              vx = input('Enter x Velocity:')
+              if vx.isdigit():
+                     #set the velocity to the user's input
+                     vx0 = int(vx)
+              else:
+                     print(vx, ' is not a digit')
+       
+       #get input and validate that it is a digit
+       while vy.isdigit() == False:              
+              vy = input('Enter y Velocity:')
+              if vy.isdigit():
+                     #set the velocity to the user's input
+                     vy0 = int(vy)
+              else:
+                     print(vy, ' is not a digit')
+
+def set_data():
+       """
+       Function to set data
+       """
+
+       # loop through array of points
+       for i in range(intervals):
+              global x,y,t
+              x.append(px(x0,vx0,t,ax))
+              y.append(px(y0,vy0,t,ay))
+              t = t + delt
+
+              if i != 0 and y[i] <= 0.0:
+                     break
+
+if __name__ == "__main__":
+    # "main" program
+    main()
+    exit(0)
